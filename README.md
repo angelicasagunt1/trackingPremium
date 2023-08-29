@@ -2,11 +2,11 @@
 
 1. 😀 Clona este Repositorio! 
 
-2. Ve a la carpet  `/docker` dentro del proyecto y corre el comando `docker compose up -d` para inicializar los containers!
+2. Ve a la carpeta  `/docker` dentro del proyecto y corre el comando `docker compose up -d` para inicializar los containers!
 
 3. Dentro del contenedor de `php` corre el comando `composer install` para instalar las dependencias
 
-4. Recuerda correr el archivo SQL dentro de la base de datos app_db para crear la tabla tracking !
+4. Recuerda correr el archivo SQL proporcionado por mail para esta prueba dentro de la base de datos `app_db` para crear la tabla tracking !
 
 5. Crear la tabla USER:
 
