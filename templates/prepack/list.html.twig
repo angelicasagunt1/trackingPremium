@@ -1,0 +1,56 @@
+{# templates/prepack/list.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Prepack List{% endblock %}
+
+{% block content %}
+  <h1 class="mb-4">Prepack List</h1>
+
+  <div class="row mb-3">
+    <div class="col-md-6">
+      <form action="{{ path('prepacks_list') }}" method="get">
+        <label for="dateFilter">Filter by Creation Date:</label>
+        <input type="date" id="dateFilter" name="dateFilter" class="form-control" value="{{ app.request.query.get('dateFilter') }}">
+    </div>
+    <div class="col-md-6">
+      <label for="trackingFilter">Filter by Tracking:</label>
+      <input type="text" id="trackingFilter" name="trackingFilter" class="form-control" value="{{ app.request.query.get('trackingFilter') }}">
+    </div>
+    <div class="col-md-12 mt-2">
+      <button type="submit" class="btn btn-primary">Apply Filters</button>
+      <a href="{{ path('prepacks_list') }}" class="btn btn-secondary">Reset Filters</a>
+      </form>
+    </div>
+  </div>
+
+  <table class="table table-bordered">
+    <thead>
+    <tr>
+      <th>Image</th>
+      <th>Tracking</th>
+      <th>Creation Date</th>
+      <th>N Pack</th>
+      <th>Pack Type</th>
+      <th>Weight</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for prepack in prepacks %}
+      <tr>
+        <td>
+          {% if prepack.image is not null %}
+            <img src="{{ asset('https://multitrack.trackingpremium.us/packimages/' ~ prepack.image) }}" alt="Image not available" width="50">          {% else %}
+            No Image
+          {% endif %}
+        </td>
+        <td>{{ prepack.tracking }}</td>
+        <td>{{ prepack.creationdate|date('Y-m-d H:i:s') }}</td>
+        <td>{{ prepack.npack }}</td>
+        <td>{{ prepack.packtype }}</td>
+        <td>{{ prepack.weight }}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

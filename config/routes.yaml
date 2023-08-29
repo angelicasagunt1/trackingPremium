@@ -1,0 +1,7 @@
+controllers:
+    resource: ../src/Controller/
+    type: attribute
+
+prepacks_list:
+    path: /prepack/list
+    controller: App\Controller\PrepackController::list

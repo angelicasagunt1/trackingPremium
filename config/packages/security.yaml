@@ -1,0 +1,18 @@
+# config/packages/security.yaml
+security:
+    password_hashers:
+        Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface: 'auto'
+    firewalls:
+        main:
+            #lazy: false
+            # http_basic: ~   # Usar autenticación básica
+            form_login:
+                login_path: app_login
+                check_path: app_login
+    providers:
+        app_user_provider:
+            entity:
+                class: App\Entity\User
+                property: email
+    access_control:
+        - { path: ^/prepack, roles: ROLE_USER }
