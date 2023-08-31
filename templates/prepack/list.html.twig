@@ -48,8 +48,9 @@
       <tr>
         <td>
           {% if prepack.image is not null %}
-            <img src="{{ asset('https://multitrack.trackingpremium.us/packimages/' ~ prepack.image) }}" alt="Image not available" width="50">          {% else %}
-            No Image
+            <img src="{{ asset('https://multitrack.trackingpremium.us/packimages/' ~ prepack.image) }}" alt="Image not available" class="mi_imagen") width="50" loading="lazy" >
+          {% else %}
+            <img src="{{ asset('https://multitrack.trackingpremium.us/packimages/' ~ prepack.image) }}" alt="Image not available" class="mi_imagen") width="50" loading="lazy" >
           {% endif %}
         </td>
         <td>{{ prepack.tracking }}</td>
@@ -71,6 +72,7 @@
 
 {% block javascripts %}
   <script>
+
     $(document).ready(function() {
       $('#recordsPerPage').keydown(function(event) {
         if (event.keyCode === 13) {
@@ -78,6 +80,12 @@
           window.location.href = "{{ path('prepacks_list') }}" + "?recordsPerPage=" + recordsPerPageValue;
         }
       });
+
+
+      $(".mi_imagen").on("error", function() {
+        $(this).attr("src", "https://www.trackingpremium.com/wp-content/uploads/2022/10/cropped-darklogo.png");
+      });
+
     });
   </script>
 {% endblock %}
