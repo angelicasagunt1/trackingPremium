@@ -24,6 +24,14 @@
     </div>
   </div>
 
+  <!-- Add records per page input -->
+  <div class="row mb-3">
+    <div class="col-md-1 offset-md-11 text-right">
+      <label for="recordsPerPage" class="small-text">Rows:</label>
+      <input type="text" id="recordsPerPage" name="recordsPerPage" class="form-control small-input" value="{{ app.request.query.get('recordsPerPage') }}">
+    </div>
+  </div>
+
   <table class="table table-bordered">
     <thead>
     <tr>
@@ -53,4 +61,23 @@
     {% endfor %}
     </tbody>
   </table>
+
+  <!-- Pagination links -->
+  <div class="pagination justify-content-center">
+    {{ knp_pagination_render(prepacks) }}
+  </div>
+
+{% endblock %}
+
+{% block javascripts %}
+  <script>
+    $(document).ready(function() {
+      $('#recordsPerPage').keydown(function(event) {
+        if (event.keyCode === 13) {
+          let recordsPerPageValue = $('#recordsPerPage').val();
+          window.location.href = "{{ path('prepacks_list') }}" + "?recordsPerPage=" + recordsPerPageValue;
+        }
+      });
+    });
+  </script>
 {% endblock %}
